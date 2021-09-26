@@ -1,0 +1,14 @@
+arreta zerbitzua eskatu |
+bezeroa lortu (esleitu) |
+bezeroari mezua bidali  |
+langileari mezua bidali |
+elkarrizketa gelditu	|
+elkarrizketa amaitu     |
+langilea puntuatu       | 
+errepikatzeko eskaera egin
+errepikatzeko eskaerari erantzun
+errepikapena baieztatu
+
+
+domeinu aldaketa
+elkarrizketa gelditu
