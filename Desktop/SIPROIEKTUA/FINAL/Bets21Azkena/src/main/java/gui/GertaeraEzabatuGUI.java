@@ -35,8 +35,8 @@ public class GertaeraEzabatuGUI extends JFrame {
 	private LangileaGUI aurrekoa;
 
 
-	private JComboBox<Event> jComboBoxEvents = new JComboBox<Event>();
-	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<Event>();
+	private JComboBox<Event> jComboBoxEvents = new JComboBox<>();
+	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<>();
 
 	private JLabel jLabelListOfEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ListEvents")); //$NON-NLS-1$ //$NON-NLS-2$
 	private JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -48,7 +48,7 @@ public class GertaeraEzabatuGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelError = new JLabel();
 	
-	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<>();
 	
 	Event selectedEvent;
 	private final JLabel jLabelErrorDate = new JLabel();
@@ -202,7 +202,7 @@ public class GertaeraEzabatuGUI extends JFrame {
 
 					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
 
-					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+
 					firstDay = UtilDate.trim(calendarAct.getTime());
 
 					try {
@@ -249,15 +249,13 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
-//		if (Locale.getDefault().equals(new Locale("es")))
-//			offset += 4;
-//		else
+
 			offset += 5;
 		
 	 	for (Date d:datesWithEventsCurrentMonth){
 	 		calendar.setTime(d);
 	 		System.out.println(d);
-			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+			Component o = jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(Color.CYAN);
 	 	}

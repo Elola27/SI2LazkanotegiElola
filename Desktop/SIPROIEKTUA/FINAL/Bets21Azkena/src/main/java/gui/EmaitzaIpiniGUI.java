@@ -23,8 +23,8 @@ public class EmaitzaIpiniGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private JComboBox<Event> jComboBoxEvents = new JComboBox<Event>();
-	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<Event>();
+	private JComboBox<Event> jComboBoxEvents = new JComboBox<>();
+	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<>();
 
 	private JLabel jLabelListOfEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ListEvents"));
 	private JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
@@ -36,10 +36,10 @@ public class EmaitzaIpiniGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelError = new JLabel();
 	
-	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<>();
 	
 	private JComboBox<Question> jComboBoxQuestions;
-	private DefaultComboBoxModel<Question> questionModel = new DefaultComboBoxModel<Question>();
+	private DefaultComboBoxModel<Question> questionModel = new DefaultComboBoxModel<>();
 	
 	private JButton jButtonCreate;
 	
@@ -48,8 +48,8 @@ public class EmaitzaIpiniGUI extends JFrame {
 	Pronostikoa selectedPronostic;
 	private final JLabel jLabelSucces = new JLabel();
 	private final JLabel jLabelErrorDate = new JLabel();
-	private final JComboBox<Pronostikoa> jComboBoxPronostics = new JComboBox<Pronostikoa>();
-	private DefaultComboBoxModel<Pronostikoa> pronosticModel = new DefaultComboBoxModel<Pronostikoa>();
+	private final JComboBox<Pronostikoa> jComboBoxPronostics = new JComboBox<>();
+	private DefaultComboBoxModel<Pronostikoa> pronosticModel = new DefaultComboBoxModel<>();
 	
 	public EmaitzaIpiniGUI(LangileaGUI aurrekoa) {
 		try {
@@ -216,8 +216,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 				jLabelError.setText("");
 				jLabelErrorDate.setText("");
 				jLabelSucces.setText("");
-//				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-//					public void propertyChange(PropertyChangeEvent propertychangeevent) {
+
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -248,7 +247,7 @@ public class EmaitzaIpiniGUI extends JFrame {
 
 					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
 
-					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+
 					Date firstDay = UtilDate.trim(calendarAct.getTime());
 
 					try {
@@ -290,15 +289,13 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
-//		if (Locale.getDefault().equals(new Locale("es")))
-//			offset += 4;
-//		else
+
 			offset += 5;
 		
 	 	for (Date d:datesWithEventsCurrentMonth){
 	 		calendar.setTime(d);
 	 		System.out.println(d);
-			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+			Component o = jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(Color.CYAN);
 	 	}

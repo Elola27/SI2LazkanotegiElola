@@ -23,8 +23,8 @@ public class CreateQuestionGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private JComboBox<Event> jComboBoxEvents = new JComboBox<Event>();
-	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<Event>();
+	private JComboBox<Event> jComboBoxEvents = new JComboBox<>();
+	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<>();
 
 	private JLabel jLabelListOfEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ListEvents"));
 	private JLabel jLabelQuery = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Query"));
@@ -44,7 +44,7 @@ public class CreateQuestionGUI extends JFrame {
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 	
-	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<>();
 	
 	public CreateQuestionGUI(Vector<domain.Event> v, AdminGUI aurrekoa) {
 		try {
@@ -89,7 +89,6 @@ public class CreateQuestionGUI extends JFrame {
 
 		jLabelMsg.setBounds(new Rectangle(275, 182, 305, 20));
 		jLabelMsg.setForeground(Color.red);
-		// jLabelMsg.setSize(new Dimension(305, 20));
 
 		jLabelError.setBounds(new Rectangle(175, 240, 305, 20));
 		jLabelError.setForeground(Color.red);
@@ -154,7 +153,7 @@ public class CreateQuestionGUI extends JFrame {
 
 					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
 
-					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+
 					Date firstDay = UtilDate.trim(calendarAct.getTime());
 
 					try {
@@ -204,9 +203,7 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 		System.out.println(offset);
 
-//		if (Locale.getDefault().equals(new Locale("es")))
-//			offset += 4;
-//		else
+
 			offset += 5;
 		
 		
@@ -224,8 +221,8 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 			// the empty days before day 1 of month, and all the days previous to each day.
 			// That number of components is calculated with "offset" and is different in
 			// English and Spanish
-//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
-			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+
+			Component o = jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(Color.CYAN);
 	 	}

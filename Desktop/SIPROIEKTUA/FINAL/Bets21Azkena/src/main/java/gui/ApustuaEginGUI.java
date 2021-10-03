@@ -25,8 +25,8 @@ public class ApustuaEginGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private JComboBox<Event> jComboBoxEvents = new JComboBox<Event>();
-	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<Event>();
+	private JComboBox<Event> jComboBoxEvents = new JComboBox<>();
+	DefaultComboBoxModel<Event> modelEvents = new DefaultComboBoxModel<>();
 
 	private JLabel jLabelListOfEvents = new JLabel();
 	private JLabel jLabelEventDate = new JLabel();
@@ -39,10 +39,10 @@ public class ApustuaEginGUI extends JFrame {
 	private JLabel jLabelError = new JLabel();
 	private JButton addButton;
 	
-	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<>();
 	
 	private JComboBox<Question> jComboBoxQuestions;
-	private DefaultComboBoxModel<Question> questionModel = new DefaultComboBoxModel<Question>();
+	private DefaultComboBoxModel<Question> questionModel = new DefaultComboBoxModel<>();
 	
 	private JButton jButtonCreate;
 	
@@ -51,8 +51,8 @@ public class ApustuaEginGUI extends JFrame {
 	Pronostikoa selectedPronostic;
 	private final JLabel jLabelSucces = new JLabel();
 	private final JLabel jLabelErrorDate = new JLabel();
-	private final JComboBox<Pronostikoa> jComboBoxPronostics = new JComboBox<Pronostikoa>();
-	private DefaultComboBoxModel<Pronostikoa> pronosticModel = new DefaultComboBoxModel<Pronostikoa>();
+	private final JComboBox<Pronostikoa> jComboBoxPronostics = new JComboBox<>();
+	private DefaultComboBoxModel<Pronostikoa> pronosticModel = new DefaultComboBoxModel<>();
 	private JTextField textFieldBet;
 	private final JLabel jLabelMinBet = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
 	private final JLabel jLabelMsg = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
@@ -69,7 +69,7 @@ public class ApustuaEginGUI extends JFrame {
 	};
 	
 	private Integer pronosI;
-	private ArrayList<Pronostikoa> pronostikoak = new ArrayList<Pronostikoa>();
+	private ArrayList<Pronostikoa> pronostikoak = new ArrayList<>();
 	private JLabel pronosticAdded;
 	private JButton quitButton;
 	private final JLabel euro = new JLabel("\u20AC");
@@ -151,7 +151,7 @@ public class ApustuaEginGUI extends JFrame {
 		jLabelListOfQuestions.setBounds(290, 109, 277, 14);
 		getContentPane().add(jLabelListOfQuestions);
 		
-		jComboBoxQuestions = new JComboBox<Question>();
+		jComboBoxQuestions = new JComboBox<>();
 		jComboBoxQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				jLabelError.setText("");
@@ -205,7 +205,7 @@ public class ApustuaEginGUI extends JFrame {
 							for(int i = 0; i<pronostikoak.size(); i++) {
 								tableModelApustua.removeRow(0);
 							}
-							pronostikoak.removeAll(pronostikoak);
+							pronostikoak.clear();
 							jButtonCreate.setEnabled(false);
 							TotalMinBet.setText("");
 							TotalFee.setText("");
@@ -302,7 +302,7 @@ public class ApustuaEginGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				pronosticAdded.setText("");
 				tableModelApustua.removeRow(pronosI);
-				double kuotaZaharra = pronostikoak.get((int)pronosI).getKuota();
+				double kuotaZaharra = pronostikoak.get(pronosI).getKuota();
 				pronostikoak.remove((int)pronosI);
 				if(pronostikoak.isEmpty()) {
 					TotalMinBet.setText("");
@@ -332,7 +332,7 @@ public class ApustuaEginGUI extends JFrame {
 					eventDate = UtilDate.trim(eventDate);
 					Date today = new Date();
 					if(eventDate.after(today)) {
-						Vector<Object> row = new Vector<Object>();
+						Vector<Object> row = new Vector<>();
 						row.add(UtilDate.getString(jCalendar.getDate()));
 						row.add(selectedEvent.getDescription());
 						row.add(selectedQuestion.getQuestion());
@@ -387,8 +387,7 @@ public class ApustuaEginGUI extends JFrame {
 				jLabelErrorDate.setText("");
 				jLabelSucces.setText("");
 				pronosticAdded.setText("");
-//				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-//					public void propertyChange(PropertyChangeEvent propertychangeevent) {
+
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -418,20 +417,13 @@ public class ApustuaEginGUI extends JFrame {
 
 					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
 
-					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+					
 					Date firstDay = UtilDate.trim(calendarAct.getTime());
 
 					try {
 						BLFacade facade = MainGUI.getBusinessLogic();
 
 						Vector<domain.Event> events = facade.getEvents(firstDay);
-//
-//						if (events.isEmpty())
-////							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
-////									+ ": " + dateformat1.format(calendarAct.getTime()));
-//						else
-//							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
-//									+ dateformat1.format(calendarAct.getTime()));
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
 
@@ -460,15 +452,12 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
-//		if (Locale.getDefault().equals(new Locale("es")))
-//			offset += 4;
-//		else
 			offset += 5;
 		
 	 	for (Date d:datesWithEventsCurrentMonth){
 	 		calendar.setTime(d);
 	 		System.out.println(d);
-			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+			Component o = jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(Color.CYAN);
 	 	}
